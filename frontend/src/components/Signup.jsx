@@ -1,7 +1,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-
+import axios from "axios"
+import {toast} from 'react-hot-toast'
 
 const Signup = () => {
   const {
@@ -9,7 +10,26 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+    const userInfo = {
+      fullname:data.fullname,
+      email:data.email,
+      password:data.password
+    }
+    await axios.post("http://localhost:3000/signup",userInfo)
+    .then((res) => {
+      console.log(res.data);
+      if(res.data){
+        toast.success("Signup Successfull")
+      }
+      localStorage.setItem("Users",JSON.stringify(res.data.user));
+    }).catch((err) => {
+      if(err.response){
+        console.log(err);
+        toast.error("Error:" + err.response.data.message);
+      }
+    })
+  }
   return (
      <>
         <div>
@@ -27,8 +47,8 @@ const Signup = () => {
                 <input type="text"
                 placeholder="Enter Your Full Name"
                 className="w-80 px-3 py-1 border rounded-md outline-none"
-                {...register("name", { required: true })} /> <br />
-                {errors.name && <span className="text-red-500">This field is required</span>}
+                {...register("fullname", { required: true })} /> <br />
+                {errors.fullname && <span className="text-red-500">This field is required</span>}
             </div>
             <div className="mt-4 space-y-2">
                 <span>Email</span>

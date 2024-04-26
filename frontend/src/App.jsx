@@ -5,6 +5,7 @@ import {Route,Routes} from "react-router-dom"
 import Courses from './courses/Courses'
 import Signup from './components/Signup'
 import ContactUs from './components/ContactUs'
+import {Toaster} from "react-hot-toast"
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/signup' element={<Signup/>} />
         <Route path='/contactus' element={<ContactUs/>} />
        </Routes>
+       <Toaster/>
     </>
   )
 }

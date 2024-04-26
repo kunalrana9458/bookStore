@@ -1,0 +1,29 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "mern book store app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kunalrana9458/bookStore.git"
+  },
+  "author": "Kunal Rana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kunalrana9458/bookStore/issues"
+  },
+  "homepage": "https://github.com/kunalrana9458/bookStore#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "nodemon": "^3.1.0"
+  }
+}

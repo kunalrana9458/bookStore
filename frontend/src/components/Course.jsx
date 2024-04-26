@@ -1,11 +1,23 @@
-import React from "react";
-import list from "../../public/list.json"
+import React, { useEffect, useState } from "react";
 import Cards from "../components/Cards"
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 const Course = () => {
-  const filterData = list.filter((item) => (item.category !== "Free"));
-  console.log(filterData);
+  const [book,setBook] = useState([]);
+  useEffect(() => {
+    const getBooks = async() => {
+      try{
+        const res = await axios.get("http://localhost:3000/books");
+        console.log(res.data);
+        setBook(res.data);
+      } catch(err){
+        console.log(err);
+      }
+    }
+    getBooks();
+  },[]);
+  const filterBooks = book.filter((item) => (item.category !== "Free"));
   return (
     <>
       <div className="max-w-screen-2xl container mx-auto md:px-20 px-4">
@@ -35,7 +47,7 @@ const Course = () => {
         </div>
         <div className="flex flex-wrap justify-evenly">
           {
-            filterData.map((item) => (
+            filterBooks.map((item) => (
               <Cards item={item} key={item.book_id}/>
             ))
           }

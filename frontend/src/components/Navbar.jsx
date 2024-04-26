@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "./Login";
+import { useAuth } from "../../context/AuthProvider";
+
 
 const Navbar = () => {
 
+  const [authUser,setAuthUser] = useAuth();
+  console.log(authUser);
   const [sticky,setSticky] = useState(false);
   const [theme,setTheme] = useState(localStorage.getItem("theme")?localStorage.getItem("theme"):"dark")
   const element = document.documentElement;
